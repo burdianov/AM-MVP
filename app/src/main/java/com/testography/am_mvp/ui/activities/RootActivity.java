@@ -56,6 +56,8 @@ public class RootActivity extends AppCompatActivity implements IAuthView, View.O
 
     //endregion
 
+    //region ========== IAuthView ==========
+
     @Override
     public void showMessage(String message) {
         Snackbar.make(mCoordinatorLayout, message, Snackbar.LENGTH_LONG).show();
@@ -74,7 +76,7 @@ public class RootActivity extends AppCompatActivity implements IAuthView, View.O
 
     @Override
     public void showLoad() {
-        // TODO: 22-Oct-16 show load progress 
+        // TODO: 22-Oct-16 show load progress
     }
 
     @Override
@@ -105,6 +107,18 @@ public class RootActivity extends AppCompatActivity implements IAuthView, View.O
     @Override
     public AuthPanel getAuthPanel() {
         return mAuthPanel;
+    }
+
+    //endregion
+
+
+    @Override
+    public void onBackPressed() {
+        if (!mAuthPanel.isIdle()) {
+            mAuthPanel.setCustomState(AuthPanel.IDLE_STATE);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
