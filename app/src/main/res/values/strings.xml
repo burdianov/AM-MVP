@@ -12,4 +12,10 @@
     <string name="roboto_black">sans-serif-black</string>
     <string name="roboto_thin">sans-serif-thin</string>
     <string name="roboto_medium">sans-serif-medium</string>
+
+    <string name="email_hint">Enter email</string>
+    <string name="password_hint">Enter password</string>
+    <string name="err_msg_password">Password too short</string>
+    <string name="err_msg_email">Wrong email format</string>
+
 </resources>

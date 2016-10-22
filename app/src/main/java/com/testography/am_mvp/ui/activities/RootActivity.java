@@ -1,12 +1,19 @@
 package com.testography.am_mvp.ui.activities;
 
+import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.testography.am_mvp.BuildConfig;
@@ -16,6 +23,7 @@ import com.testography.am_mvp.mvp.presenters.IAuthPresenter;
 import com.testography.am_mvp.mvp.views.IAuthView;
 import com.testography.am_mvp.ui.custom_views.AuthPanel;
 import com.testography.am_mvp.utils.ConstantsManager;
+import com.testography.am_mvp.utils.CustomTextWatcher;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,6 +47,23 @@ public class RootActivity extends AppCompatActivity implements IAuthView, View.O
     @BindView(R.id.app_name_txt)
     TextView mAppNameTxt;
 
+    @BindView(R.id.login_email_et)
+    EditText mEmailEt;
+
+    @BindView(R.id.login_password_et)
+    EditText mPasswordEt;
+
+    @BindView(R.id.facebook_ib)
+    ImageButton mFacebook;
+
+    @BindView(R.id.twitter_ib)
+    ImageButton mTwitter;
+
+    @BindView(R.id.vk_ib)
+    ImageButton mVK;
+
+    protected ProgressDialog mProgressDialog;
+
     //region ========== Life cycle ==========
 
     @Override
@@ -53,9 +78,6 @@ public class RootActivity extends AppCompatActivity implements IAuthView, View.O
         mLoginBtn.setOnClickListener(this);
         mShowCatalogBtn.setOnClickListener(this);
 
-        String customFont = ConstantsManager.CUSTOM_FONTS_ROOT + ConstantsManager
-                .CUSTOM_FONT_NAME;
-        mAppNameTxt.setTypeface(Typeface.createFromAsset(getAssets(), customFont));
     }
 
     @Override
@@ -86,12 +108,26 @@ public class RootActivity extends AppCompatActivity implements IAuthView, View.O
 
     @Override
     public void showLoad() {
-        // TODO: 22-Oct-16 show load progress
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this, R.style.custom_dialog);
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable
+                    (Color.TRANSPARENT));
+            mProgressDialog.show();
+            mProgressDialog.setContentView(R.layout.progress_splash);
+        } else {
+            mProgressDialog.show();
+            mProgressDialog.setContentView(R.layout.progress_splash);
+        }
     }
 
     @Override
     public void hideLoad() {
-        // TODO: 22-Oct-16 hide load progress
+        if (mProgressDialog != null) {
+            if (mProgressDialog.isShowing()) {
+                mProgressDialog.hide();
+            }
+        }
     }
 
     @Override
@@ -114,8 +150,46 @@ public class RootActivity extends AppCompatActivity implements IAuthView, View.O
         return mAuthPanel;
     }
 
-    //endregion
+    @Override
+    public void animateSocialButtons() {
+        setSocialButtonsAnimation(mFacebook);
+        setSocialButtonsAnimation(mTwitter);
+        setSocialButtonsAnimation(mVK);
+    }
 
+    @Override
+    public void setTypeface() {
+        String customFont = ConstantsManager.CUSTOM_FONTS_ROOT + ConstantsManager
+                .CUSTOM_FONT_NAME;
+        mAppNameTxt.setTypeface(Typeface.createFromAsset(getAssets(), customFont));
+    }
+
+    @Override
+    public void addChangeTextListeners() {
+        mPasswordEt.addTextChangedListener(new CustomTextWatcher(this,
+                mPasswordEt, mLoginBtn));
+        mEmailEt.addTextChangedListener(new CustomTextWatcher(this, mEmailEt, mLoginBtn));
+    }
+
+    private void setSocialButtonsAnimation(ImageButton button) {
+        button.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        v.animate().setDuration(200).scaleX(1.1f).scaleY(1.1f);
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        v.animate().setDuration(200).scaleX(1.0f).scaleY(1.0f);
+                        break;
+                }
+                return false;
+            }
+        });
+    }
+
+    //endregion
 
     @Override
     public void onBackPressed() {
@@ -123,6 +197,22 @@ public class RootActivity extends AppCompatActivity implements IAuthView, View.O
             mAuthPanel.setCustomState(AuthPanel.IDLE_STATE);
         } else {
             super.onBackPressed();
+        }
+    }
+
+    @Override
+    public void requestEmailFocus() {
+        if (mEmailEt.requestFocus()) {
+            this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+            mEmailEt.setSelection(mEmailEt.length());
+        }
+    }
+
+    @Override
+    public void requestPasswordFocus() {
+        if (mPasswordEt.requestFocus()) {
+            this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+            mPasswordEt.setSelection(mPasswordEt.length());
         }
     }
 

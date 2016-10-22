@@ -5,6 +5,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -60,7 +62,7 @@ public class AuthPanel extends LinearLayout {
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
         SavedState savedState = (SavedState) state;
-        super.onRestoreInstanceState(state);
+        super.onRestoreInstanceState(savedState.getSuperState());
         setCustomState(savedState.state);
     }
 
@@ -70,11 +72,29 @@ public class AuthPanel extends LinearLayout {
     }
 
     private void showLoginState() {
+        Animation animation = new ScaleAnimation(
+                1.0f, 1.0f,
+                0.3f, 1.0f,
+                Animation.RELATIVE_TO_SELF, 1.0f,
+                Animation.RELATIVE_TO_SELF, 1.0f
+        );
+        animation.setDuration(500);
+        mAuthCard.startAnimation(animation);
+
         mAuthCard.setVisibility(VISIBLE);
         mShowCatalogBtn.setVisibility(GONE);
     }
 
     private void showIdleState() {
+        Animation animation = new ScaleAnimation(
+                1.0f, 1.0f,
+                1.0f, 0.3f,
+                Animation.RELATIVE_TO_SELF, 1.0f,
+                Animation.RELATIVE_TO_SELF, 1.0f
+        );
+        animation.setDuration(500);
+        mAuthCard.setAnimation(animation);
+
         mAuthCard.setVisibility(GONE);
         mShowCatalogBtn.setVisibility(VISIBLE);
     }

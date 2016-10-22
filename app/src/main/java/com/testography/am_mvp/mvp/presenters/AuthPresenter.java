@@ -1,14 +1,21 @@
 package com.testography.am_mvp.mvp.presenters;
 
+import android.content.Context;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 
+import com.testography.am_mvp.R;
+import com.testography.am_mvp.data.managers.DataManager;
 import com.testography.am_mvp.mvp.models.AuthModel;
 import com.testography.am_mvp.mvp.views.IAuthView;
 import com.testography.am_mvp.ui.custom_views.AuthPanel;
+import com.testography.am_mvp.utils.CredentialsValidator;
 
 public class AuthPresenter implements IAuthPresenter {
 
+    private static Context sAppContext = DataManager.getInstance().getAppContext();
     private static AuthPresenter ourInstance = new AuthPresenter();
+
     private AuthModel mAuthModel;
     private IAuthView mAuthView;
 
@@ -38,6 +45,9 @@ public class AuthPresenter implements IAuthPresenter {
             } else {
                 getView().showLoginBtn();
             }
+            getView().animateSocialButtons();
+            getView().addChangeTextListeners();
+            getView().setTypeface();
         }
     }
 
@@ -53,10 +63,29 @@ public class AuthPresenter implements IAuthPresenter {
             if (getView().getAuthPanel().isIdle()) {
                 getView().getAuthPanel().setCustomState(AuthPanel.LOGIN_STATE);
             } else {
-                // TODO: 22-Oct-16 auth user
-                mAuthModel.loginUser(getView().getAuthPanel().getUserEmail(), getView
-                        ().getAuthPanel().getUserPassword());
+                String email = getView().getAuthPanel().getUserEmail();
+                String password = getView().getAuthPanel().getUserPassword();
+
+                if (!CredentialsValidator.isValidEmail(email)) {
+                    getView().requestEmailFocus();
+                    getView().showMessage(sAppContext.getString(R.string.err_msg_email));
+                    return;
+                }
+                if (!CredentialsValidator.isValidPassword(password)) {
+                    getView().requestPasswordFocus();
+                    getView().showMessage(sAppContext.getString(R.string.err_msg_password));
+                    return;
+                }
+                mAuthModel.loginUser(email, password);
+                getView().showLoad();
                 getView().showMessage("request for user auth");
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        getView().hideLoad();
+                    }
+                }, 3000);
             }
         }
     }

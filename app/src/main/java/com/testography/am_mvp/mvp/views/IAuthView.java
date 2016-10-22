@@ -21,8 +21,16 @@ public interface IAuthView {
 
     void hideLoginBtn();
 
-//    void testShowLoginCard();
-
     @Nullable
     AuthPanel getAuthPanel();
+
+    void requestEmailFocus();
+
+    void requestPasswordFocus();
+
+    void animateSocialButtons();
+
+    void setTypeface();
+
+    void addChangeTextListeners();
 }
