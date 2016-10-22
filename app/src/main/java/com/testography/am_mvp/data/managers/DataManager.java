@@ -2,6 +2,8 @@ package com.testography.am_mvp.data.managers;
 
 import android.content.Context;
 
+import com.testography.am_mvp.utils.ConstantsManager;
+
 public class DataManager {
     private static DataManager ourInstance;
     private PreferencesManager mPreferencesManager;
@@ -25,5 +27,14 @@ public class DataManager {
 
     public Context getAppContext() {
         return mAppContext;
+    }
+
+    public boolean isAuthUser() {
+        return !mPreferencesManager.getAuthToken().equals(ConstantsManager
+                .INVALID_TOKEN);
+    }
+
+    public void loginUser(String email, String password) {
+        // TODO: 23-Oct-16 implement user authentication
     }
 }

@@ -1,17 +1,20 @@
 package com.testography.am_mvp.mvp.models;
 
+import com.testography.am_mvp.data.managers.DataManager;
+
 public class AuthModel {
 
-    public AuthModel() {
+    private DataManager mDataManager;
 
+    public AuthModel() {
+        mDataManager = DataManager.getInstance();
     }
 
     public boolean isAuthUser() {
-        // TODO: 21-Oct-16 search token in sharedPreferences
-        return false;
+        return mDataManager.isAuthUser();
     }
 
     public void loginUser(String email, String password) {
-        // TODO: 21-Oct-16 send data to server for auth
+        mDataManager.loginUser(email, password);
     }
 }

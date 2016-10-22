@@ -33,34 +33,34 @@ public class RootActivity extends AppCompatActivity implements IAuthView, View.O
     private AuthPresenter mPresenter = AuthPresenter.getInstance();
 
     @BindView(R.id.coordinator_container)
-    private CoordinatorLayout mCoordinatorLayout;
+    CoordinatorLayout mCoordinatorLayout;
 
     @BindView(R.id.auth_wrapper)
-    private AuthPanel mAuthPanel;
+    AuthPanel mAuthPanel;
 
     @BindView(R.id.show_catalog_btn)
-    private Button mShowCatalogBtn;
+    Button mShowCatalogBtn;
 
     @BindView(R.id.login_btn)
-    private Button mLoginBtn;
+    Button mLoginBtn;
 
     @BindView(R.id.app_name_txt)
-    private TextView mAppNameTxt;
+    TextView mAppNameTxt;
 
     @BindView(R.id.login_email_et)
-    private EditText mEmailEt;
+    EditText mEmailEt;
 
     @BindView(R.id.login_password_et)
-    private EditText mPasswordEt;
+    EditText mPasswordEt;
 
     @BindView(R.id.facebook_ib)
-    private ImageButton mFacebook;
+    ImageButton mFacebook;
 
     @BindView(R.id.twitter_ib)
-    private ImageButton mTwitter;
+    ImageButton mTwitter;
 
     @BindView(R.id.vk_ib)
-    private ImageButton mVK;
+    ImageButton mVK;
 
     protected ProgressDialog mProgressDialog;
 
