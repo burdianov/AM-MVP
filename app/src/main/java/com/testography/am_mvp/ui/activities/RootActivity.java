@@ -15,6 +15,7 @@ import com.testography.am_mvp.mvp.presenters.AuthPresenter;
 import com.testography.am_mvp.mvp.presenters.IAuthPresenter;
 import com.testography.am_mvp.mvp.views.IAuthView;
 import com.testography.am_mvp.ui.custom_views.AuthPanel;
+import com.testography.am_mvp.utils.ConstantsManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,9 +53,9 @@ public class RootActivity extends AppCompatActivity implements IAuthView, View.O
         mLoginBtn.setOnClickListener(this);
         mShowCatalogBtn.setOnClickListener(this);
 
-        Typeface customFont = Typeface.createFromAsset(getAssets(),
-                "fonts/PTBebasNeueRegular.ttf");
-        mAppNameTxt.setTypeface(customFont);
+        String customFont = ConstantsManager.CUSTOM_FONTS_ROOT + ConstantsManager
+                .CUSTOM_FONT_NAME;
+        mAppNameTxt.setTypeface(Typeface.createFromAsset(getAssets(), customFont));
     }
 
     @Override
