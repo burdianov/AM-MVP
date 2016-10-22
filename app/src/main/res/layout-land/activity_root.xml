@@ -22,6 +22,7 @@
 
             <ImageView
                 android:id="@+id/logo_img"
+                android:contentDescription="@string/app_logo"
                 android:layout_width="@dimen/login_logo_width_70"
                 android:layout_height="@dimen/login_logo_height_100"
                 android:layout_gravity="center|top"
@@ -35,7 +36,7 @@
                 android:layout_marginStart="@dimen/spacing_small_8"
                 android:text="@string/app_name"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/size_normal_40"/>
+                android:textSize="@dimen/font_medium_plus_40"/>
         </LinearLayout>
 
         <com.testography.am_mvp.ui.custom_views.AuthPanel
@@ -120,6 +121,7 @@
 
             <ImageButton
                 android:id="@+id/facebook_ib"
+                android:contentDescription="Facebook button"
                 android:layout_width="@dimen/size_medium_56"
                 android:layout_height="@dimen/size_medium_56"
                 android:layout_marginBottom="@dimen/spacing_normal_16"
@@ -130,6 +132,7 @@
 
             <ImageButton
                 android:id="@+id/twitter_ib"
+                android:contentDescription="Twitter button"
                 android:layout_width="@dimen/size_medium_56"
                 android:layout_height="@dimen/size_medium_56"
                 android:layout_marginBottom="@dimen/spacing_normal_16"
@@ -140,6 +143,7 @@
 
             <ImageButton
                 android:id="@+id/vk_ib"
+                android:contentDescription="VK button"
                 android:layout_width="@dimen/size_medium_56"
                 android:layout_height="@dimen/size_medium_56"
                 android:layout_marginBottom="@dimen/spacing_normal_16"

@@ -30,37 +30,37 @@ import butterknife.ButterKnife;
 
 public class RootActivity extends AppCompatActivity implements IAuthView, View.OnClickListener {
 
-    AuthPresenter mPresenter = AuthPresenter.getInstance();
+    private AuthPresenter mPresenter = AuthPresenter.getInstance();
 
     @BindView(R.id.coordinator_container)
-    CoordinatorLayout mCoordinatorLayout;
+    private CoordinatorLayout mCoordinatorLayout;
 
     @BindView(R.id.auth_wrapper)
-    AuthPanel mAuthPanel;
+    private AuthPanel mAuthPanel;
 
     @BindView(R.id.show_catalog_btn)
-    Button mShowCatalogBtn;
+    private Button mShowCatalogBtn;
 
     @BindView(R.id.login_btn)
-    Button mLoginBtn;
+    private Button mLoginBtn;
 
     @BindView(R.id.app_name_txt)
-    TextView mAppNameTxt;
+    private TextView mAppNameTxt;
 
     @BindView(R.id.login_email_et)
-    EditText mEmailEt;
+    private EditText mEmailEt;
 
     @BindView(R.id.login_password_et)
-    EditText mPasswordEt;
+    private EditText mPasswordEt;
 
     @BindView(R.id.facebook_ib)
-    ImageButton mFacebook;
+    private ImageButton mFacebook;
 
     @BindView(R.id.twitter_ib)
-    ImageButton mTwitter;
+    private ImageButton mTwitter;
 
     @BindView(R.id.vk_ib)
-    ImageButton mVK;
+    private ImageButton mVK;
 
     protected ProgressDialog mProgressDialog;
 

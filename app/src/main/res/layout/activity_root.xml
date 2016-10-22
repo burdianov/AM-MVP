@@ -15,6 +15,7 @@
 
         <ImageView
             android:id="@+id/logo_img"
+            android:contentDescription="@string/app_logo"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/spacing_bigger_plus_48"
@@ -29,7 +30,7 @@
             android:layout_below="@id/logo_img"
             android:layout_centerHorizontal="true"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/size_normal_40"
+            android:textSize="@dimen/font_medium_plus_40"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -114,6 +115,7 @@
 
             <ImageButton
                 android:id="@+id/facebook_ib"
+                android:contentDescription="Facebook button"
                 android:layout_width="@dimen/size_medium_56"
                 android:layout_height="@dimen/size_medium_56"
                 android:layout_marginLeft="@dimen/spacing_normal_16"
@@ -122,6 +124,7 @@
 
             <ImageButton
                 android:id="@+id/twitter_ib"
+                android:contentDescription="Twitter button"
                 android:layout_width="@dimen/size_medium_56"
                 android:layout_height="@dimen/size_medium_56"
                 android:layout_marginLeft="@dimen/spacing_normal_16"
@@ -130,6 +133,7 @@
 
             <ImageButton
                 android:id="@+id/vk_ib"
+                android:contentDescription="VK button"
                 android:layout_width="@dimen/size_medium_56"
                 android:layout_height="@dimen/size_medium_56"
                 android:layout_marginLeft="@dimen/spacing_normal_16"

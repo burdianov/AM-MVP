@@ -17,5 +17,6 @@
     <string name="password_hint">Enter password</string>
     <string name="err_msg_password">Password too short</string>
     <string name="err_msg_email">Wrong email format</string>
+    <string name="app_logo">App logo</string>
 
 </resources>

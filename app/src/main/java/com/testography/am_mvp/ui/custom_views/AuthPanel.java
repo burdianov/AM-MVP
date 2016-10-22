@@ -24,19 +24,19 @@ public class AuthPanel extends LinearLayout {
     private int mCustomState = 1;
 
     @BindView(R.id.auth_card)
-    CardView mAuthCard;
+    private CardView mAuthCard;
 
     @BindView(R.id.login_email_et)
-    EditText mEmailEt;
+    private EditText mEmailEt;
 
     @BindView(R.id.login_password_et)
-    EditText mPasswordEt;
+    private EditText mPasswordEt;
 
     @BindView(R.id.login_btn)
-    Button mLoginBtn;
+    private Button mLoginBtn;
 
     @BindView(R.id.show_catalog_btn)
-    Button mShowCatalogBtn;
+    private Button mShowCatalogBtn;
 
     public AuthPanel(Context context, AttributeSet attrs) {
         super(context, attrs);
