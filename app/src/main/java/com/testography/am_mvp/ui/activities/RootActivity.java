@@ -1,11 +1,13 @@
 package com.testography.am_mvp.ui.activities;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.testography.am_mvp.BuildConfig;
 import com.testography.am_mvp.R;
@@ -33,6 +35,9 @@ public class RootActivity extends AppCompatActivity implements IAuthView, View.O
     @BindView(R.id.login_btn)
     Button mLoginBtn;
 
+    @BindView(R.id.app_name_txt)
+    TextView mAppNameTxt;
+
     //region ========== Life cycle ==========
 
     @Override
@@ -46,6 +51,10 @@ public class RootActivity extends AppCompatActivity implements IAuthView, View.O
 
         mLoginBtn.setOnClickListener(this);
         mShowCatalogBtn.setOnClickListener(this);
+
+        Typeface customFont = Typeface.createFromAsset(getAssets(),
+                "fonts/PTBebasNeueRegular.ttf");
+        mAppNameTxt.setTypeface(customFont);
     }
 
     @Override
@@ -98,11 +107,6 @@ public class RootActivity extends AppCompatActivity implements IAuthView, View.O
     public void hideLoginBtn() {
         mLoginBtn.setVisibility(View.GONE);
     }
-
-//    @Override
-//    public void testShowLoginCard() {
-//        mAuthCard.setVisibility(View.VISIBLE);
-//    }
 
     @Override
     public AuthPanel getAuthPanel() {
