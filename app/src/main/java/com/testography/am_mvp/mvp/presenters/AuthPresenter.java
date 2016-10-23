@@ -11,13 +11,15 @@ import com.testography.am_mvp.mvp.views.IAuthView;
 import com.testography.am_mvp.ui.custom_views.AuthPanel;
 import com.testography.am_mvp.utils.CredentialsValidator;
 
+import java.lang.ref.WeakReference;
+
 public class AuthPresenter implements IAuthPresenter {
 
     private static Context sAppContext = DataManager.getInstance().getAppContext();
     private static AuthPresenter ourInstance = new AuthPresenter();
 
     private AuthModel mAuthModel;
-    private IAuthView mAuthView;
+    private WeakReference<IAuthView> mAuthView;
 
     private AuthPresenter() {
         mAuthModel = new AuthModel();
@@ -29,7 +31,7 @@ public class AuthPresenter implements IAuthPresenter {
 
     @Override
     public void takeView(IAuthView authView) {
-        mAuthView = authView;
+        mAuthView = new WeakReference<IAuthView>(authView);
     }
 
     @Override
@@ -54,7 +56,7 @@ public class AuthPresenter implements IAuthPresenter {
     @Nullable
     @Override
     public IAuthView getView() {
-        return mAuthView;
+        return mAuthView.get();
     }
 
     @Override

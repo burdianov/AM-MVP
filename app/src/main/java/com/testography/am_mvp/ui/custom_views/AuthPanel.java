@@ -42,8 +42,6 @@ public class AuthPanel extends LinearLayout {
         super(context, attrs);
     }
 
-    // TODO: 22-Oct-16 validate and save state for email input
-
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();

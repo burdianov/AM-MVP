@@ -166,9 +166,10 @@ public class RootActivity extends AppCompatActivity implements IAuthView, View.O
 
     @Override
     public void addChangeTextListeners() {
+        mEmailEt.addTextChangedListener(new CustomTextWatcher(this, mEmailEt,
+                mLoginBtn));
         mPasswordEt.addTextChangedListener(new CustomTextWatcher(this,
                 mPasswordEt, mLoginBtn));
-        mEmailEt.addTextChangedListener(new CustomTextWatcher(this, mEmailEt, mLoginBtn));
     }
 
     private void setSocialButtonsAnimation(ImageButton button) {

@@ -46,6 +46,8 @@ public class CustomTextWatcher implements TextWatcher {
     private void validateEmail(String email) {
         if (!isValidEmail(email) && email.length() != 0) {
             mTextInputLayout.setHint(mContext.getString(R.string.err_msg_email));
+//            mTextInputLayout.setErrorEnabled(true);
+//            mTextInputLayout.setError(mContext.getString(R.string.err_msg_email));
 //            mLoginButton.setEnabled(false);
         } else if (email.length() == 0) {
 //            mLoginButton.setEnabled(false);
@@ -59,6 +61,8 @@ public class CustomTextWatcher implements TextWatcher {
     private void validatePassword(String password) {
         if (!isValidPassword(password) && password.length() != 0) {
             mTextInputLayout.setHint(mContext.getString(R.string.err_msg_password));
+//            mTextInputLayout.setErrorEnabled(true);
+//            mTextInputLayout.setError(mContext.getString(R.string.err_msg_password)
 //            mLoginButton.setEnabled(false);
         } else if (password.length() == 0) {
 //            mLoginButton.setEnabled(false);
